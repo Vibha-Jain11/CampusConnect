@@ -1,0 +1,40 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f5fa;
+    margin: 0;
+}
+
+header {
+    background-color: #174ea6;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.dashboard {
+    width: 70%;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+input {
+    padding: 10px;
+    width: 70%;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #174ea6;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#feed {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eef2f8;
+}
