@@ -15,8 +15,7 @@ form.addEventListener("submit", function(event) {
     }
 
     if (post.length > 200) {
-        status.textContent =
-            "Post must not exceed 200 characters!";
+        status.textContent = "Post must not exceed 200 characters!";
         return;
     }
 
@@ -24,7 +23,9 @@ form.addEventListener("submit", function(event) {
     postElement.textContent = post;
 
     feed.appendChild(postElement);
-    input.value = "";
 
+    alert("Post published successfully!");
+
+    input.value = "";
     status.textContent = "Post published successfully!";
 });
