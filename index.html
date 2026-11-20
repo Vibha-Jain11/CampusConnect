@@ -1,34 +1,331 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>CampusConnect Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CampusConnect - College Student Portal">
+    <title>CampusConnect | College Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>CampusConnect</h1>
-        <p>Student Dashboard and Feed</p>
-    </header>
+<div class="app">
 
-    <section class="dashboard">
-        <h2>Welcome to CampusConnect</h2>
-
-        <form id="postForm">
-            <input type="text" id="postInput"
-                   placeholder="Share something...">
-            <button type="submit">Post</button>
-        </form>
-
-        <p id="status"></p>
-
-        <h2>Campus Feed</h2>
-        <div id="feed">
-            <p>Welcome to the campus community!</p>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">CC</div>
+            <div>
+                <h2>CampusConnect</h2>
+                <small>College Portal</small>
+            </div>
         </div>
-    </section>
 
-    <script src="script.js"></script>
+        <div class="nav-label">MAIN MENU</div>
+
+        <nav>
+            <button class="nav-link active" data-page="dashboard">▦ Dashboard</button>
+            <button class="nav-link" data-page="events">▣ Events</button>
+            <button class="nav-link" data-page="notices">▤ Notices</button>
+            <button class="nav-link" data-page="academics">▥ Academics</button>
+            <button class="nav-link" data-page="clubs">♧ Clubs & Societies</button>
+            <button class="nav-link" data-page="resources">▧ Resources</button>
+            <button class="nav-link" data-page="feed">▣ Campus Feed</button>
+        </nav>
+
+        <div class="nav-label">ACCOUNT</div>
+        <nav>
+            <button class="nav-link" data-page="profile">♙ My Profile</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>CampusConnect</strong>
+            <small>Student Community Portal</small>
+            <small>Version 2.0</small>
+        </div>
+    </aside>
+
+    <!-- Main area -->
+    <main class="main">
+
+        <header class="topbar">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+            <div>
+                <h3 id="pageHeading">Dashboard</h3>
+                <small>Welcome to your campus</small>
+            </div>
+
+            <div class="top-actions">
+                <span id="currentDate"></span>
+                <button class="profile-button" data-page="profile">Student</button>
+            </div>
+        </header>
+
+        <div class="content">
+
+            <!-- DASHBOARD -->
+            <section class="page active" id="dashboard">
+                <div class="welcome-banner">
+                    <div>
+                        <p>STUDENT PORTAL</p>
+                        <h1>Welcome to CampusConnect!</h1>
+                        <p>Your campus life, all in one place.</p>
+                    </div>
+                    <span class="banner-icon">🎓</span>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span>Upcoming Events</span>
+                        <h2 id="eventCount">0</h2>
+                        <small>Campus activities</small>
+                    </div>
+                    <div class="stat-card">
+                        <span>Campus Notices</span>
+                        <h2 id="noticeCount">0</h2>
+                        <small>Announcements</small>
+                    </div>
+                    <div class="stat-card">
+                        <span>Student Posts</span>
+                        <h2 id="postCount">0</h2>
+                        <small>Community discussions</small>
+                    </div>
+                    <div class="stat-card">
+                        <span>My Registrations</span>
+                        <h2 id="registrationCount">0</h2>
+                        <small>Events joined</small>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h2>Upcoming Events</h2>
+                            <button class="text-button" data-page="events">View all →</button>
+                        </div>
+                        <div id="dashboardEvents"></div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h2>Latest Notices</h2>
+                            <button class="text-button" data-page="notices">View all →</button>
+                        </div>
+                        <div id="dashboardNotices"></div>
+                    </div>
+                </div>
+
+                <div class="panel quick-panel">
+                    <h2>Quick Access</h2>
+                    <div class="quick-links">
+                        <button data-page="events">📅 Browse Events</button>
+                        <button data-page="academics">📚 Academics</button>
+                        <button data-page="resources">🏫 Resources</button>
+                        <button data-page="feed">💬 Community Feed</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EVENTS -->
+            <section class="page" id="events">
+                <div class="section-intro">
+                    <h1>Campus Events</h1>
+                    <p>Discover and register for college activities.</p>
+                </div>
+                <div class="toolbar">
+                    <input id="eventSearch" placeholder="Search events...">
+                </div>
+                <div id="eventList" class="card-grid"></div>
+            </section>
+
+            <!-- NOTICES -->
+            <section class="page" id="notices">
+                <div class="section-intro">
+                    <h1>Notice Board</h1>
+                    <p>Important announcements and campus updates.</p>
+                </div>
+                <div id="noticeList"></div>
+            </section>
+
+            <!-- ACADEMICS -->
+            <section class="page" id="academics">
+                <div class="section-intro">
+                    <h1>Academic Corner</h1>
+                    <p>Academic information and student resources.</p>
+                </div>
+
+                <div class="card-grid">
+                    <div class="module-card">
+                        <div class="module-icon">📖</div>
+                        <h3>Study Materials</h3>
+                        <p>Access subject notes, assignments and learning materials.</p>
+                        <span class="tag">Coming soon</span>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">🗓️</div>
+                        <h3>Academic Calendar</h3>
+                        <p>Keep track of academic activities and important dates.</p>
+                        <span class="tag">Coming soon</span>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">📝</div>
+                        <h3>Examination Updates</h3>
+                        <p>Find examination schedules and academic announcements.</p>
+                        <span class="tag">Coming soon</span>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">📊</div>
+                        <h3>Results & Performance</h3>
+                        <p>Academic performance and result information.</p>
+                        <span class="tag">Coming soon</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CLUBS -->
+            <section class="page" id="clubs">
+                <div class="section-intro">
+                    <h1>Clubs & Societies</h1>
+                    <p>Explore student communities and extracurricular activities.</p>
+                </div>
+                <div class="card-grid">
+                    <div class="module-card">
+                        <div class="module-icon">💻</div>
+                        <h3>Technical Club</h3>
+                        <p>Technology, coding competitions and workshops.</p>
+                        <span class="tag">Student Community</span>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">🤖</div>
+                        <h3>AI & Robotics Club</h3>
+                        <p>Artificial intelligence, robotics and innovation.</p>
+                        <span class="tag">Student Community</span>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">🎭</div>
+                        <h3>Cultural Society</h3>
+                        <p>Music, dance, art and cultural activities.</p>
+                        <span class="tag">Student Community</span>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">🏆</div>
+                        <h3>Sports Club</h3>
+                        <p>Sports activities and campus tournaments.</p>
+                        <span class="tag">Student Community</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESOURCES -->
+            <section class="page" id="resources">
+                <div class="section-intro">
+                    <h1>Campus Resources</h1>
+                    <p>Explore important facilities available on campus.</p>
+                </div>
+                <div class="card-grid">
+                    <div class="module-card">
+                        <div class="module-icon">📚</div>
+                        <h3>Central Library</h3>
+                        <p>Library facilities and academic references.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">💻</div>
+                        <h3>Computer Labs</h3>
+                        <p>Laboratory and computing facilities.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">🏥</div>
+                        <h3>Medical Facilities</h3>
+                        <p>Campus medical support information.</p>
+                    </div>
+                    <div class="module-card">
+                        <div class="module-icon">🏫</div>
+                        <h3>Classrooms</h3>
+                        <p>Classroom and academic infrastructure.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CAMPUS FEED -->
+            <section class="page" id="feed">
+                <div class="section-intro">
+                    <h1>Campus Community Feed</h1>
+                    <p>Share ideas, updates and experiences with students.</p>
+                </div>
+
+                <div class="panel">
+                    <form id="postForm">
+                        <textarea id="postInput" maxlength="200"
+                            placeholder="Share something with your campus community..."
+                            required></textarea>
+                        <div class="post-controls">
+                            <small><span id="charCount">0</span>/200 characters</small>
+                            <button type="submit" class="primary-button">Publish Post</button>
+                        </div>
+                    </form>
+                    <p id="status" role="status"></p>
+                </div>
+
+                <div class="panel">
+                    <h2>Recent Posts</h2>
+                    <div id="feedList"></div>
+                </div>
+            </section>
+
+            <!-- PROFILE -->
+            <section class="page" id="profile">
+                <div class="section-intro">
+                    <h1>My Profile</h1>
+                    <p>Manage your student information.</p>
+                </div>
+
+                <div class="panel profile-panel">
+                    <div class="avatar">S</div>
+                    <h2 id="profileDisplayName">Student</h2>
+                    <p>CampusConnect Student</p>
+
+                    <form id="profileForm">
+                        <label>Full Name</label>
+                        <input id="studentName" type="text" placeholder="Enter your name" required>
+
+                        <label>Student ID</label>
+                        <input id="studentId" type="text" placeholder="Enter student ID">
+
+                        <label>Department</label>
+                        <select id="department">
+                            <option value="">Select Department</option>
+                            <option>CSE</option>
+                            <option>CSE (AI)</option>
+                            <option>IT</option>
+                            <option>ECE</option>
+                            <option>Mechanical</option>
+                            <option>Civil</option>
+                        </select>
+
+                        <label>Academic Year</label>
+                        <select id="academicYear">
+                            <option value="">Select Year</option>
+                            <option>First Year</option>
+                            <option>Second Year</option>
+                            <option>Third Year</option>
+                            <option>Fourth Year</option>
+                        </select>
+
+                        <button class="primary-button" type="submit">Save Profile</button>
+                    </form>
+                    <p id="profileStatus" role="status"></p>
+                </div>
+            </section>
+
+            <footer>
+                <p>© 2026 CampusConnect | College Student Community Portal</p>
+            </footer>
+
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
